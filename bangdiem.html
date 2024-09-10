@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        form {
+            background-color: #d7d5d5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #200ea7;
+            text-align: center;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 100px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            width: calc(100% - 120px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group select {
+            width: calc(100% - 120px);
+        }
+
+
+        #button {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            color: rgb(9, 0, 0);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <h1>Bảng điểm của học sinh</h1>
+        <div class="form-group">
+            <label for="semester1">Semester1:</label>
+            <input type="text" id="semester1" name="semester1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="semester2">Semester2:</label>
+            <input type="text" id="semester2" name="semester2" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="summarise">Summarise:</label>
+            <input type="text" id="summarise" name="summarise" placeholder="">
+        </div>
+
+        <div id="button">
+            <button type="button" id="ok" name="ok" value="OK" onclick="myFunction1()">OK</button>
+            <button type="button" id="cancel" name="cancel" value="cancel" onclick="myFunction2()">Cancel</button>
+        </div>
+        <script type="text/javascript">
+            function myFunction1() {
+                var semester1 = parseFloat(document.getElementById('semester1').value);
+                var semester2 = parseFloat(document.getElementById('semester2').value);
+                var year = parseInt(document.getElementById('year').value);
+                var tong;
+
+                switch (year) {
+                    case 1:
+                        summarise = (semester1 + semester2) / 2;
+                        break;
+                    case 2:
+                        summarise = (semester1 + (semester2 * 2)) / 3;
+                        break;
+                    case 3:
+                        summarise = (semester1 + (semester2 * 3)) / 4;
+                }
+
+
+                document.getElementById('summarise').value = summarise.toFixed(2);
+
+                if (summarise >= 9) {
+                    document.getElementById('kq').innerHTML = "Học sinh giỏi";
+                    document.getElementById('kq').style.color = "red";
+                } else if (summarise >= 7 && summarise < 9) {
+                    document.getElementById('kq').innerHTML = "Học sinh khá";
+                    document.getElementById('kq').style.color = "blue";
+                } else if (summarise >= 5 && summarise < 7) {
+                    document.getElementById('kq').innerHTML = "Học sinh Trung bình";
+                    document.getElementById('kq').style.color = "yellow";
+                } else {
+                    document.getElementById('kq').innerHTML = "Học sinh yếu";
+                    document.getElementById('kq').style.color = "black";
+                }
+            }
+
+            function myFunction2() {
+                document.getElementById('semester1').value = "";
+                document.getElementById('semester2').value = "";
+                document.getElementById('summarise').value = "";
+                document.getElementById('kq').innerHTML = "";
+            }
+        </script>
+    </form>
+</body>
+
+</html>
